@@ -9,13 +9,14 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0010_auto_20170612_1001'),
+        ('products', '0008_auto_20170612_0940'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='product',
             name='category_id',
-            field=models.ForeignKey(choices=[(1, 'Food'), (2, 'Electronic'), (4, 'Motorbike')], on_delete=django.db.models.deletion.CASCADE, to='products.Category'),
+            field=models.ForeignKey(choices=[(1, 'Food'), (2, 'Electronic'), (4, 'Motorbike')], 
+                on_delete=django.db.models.deletion.CASCADE, to='products.Category'),
         ),
     ]

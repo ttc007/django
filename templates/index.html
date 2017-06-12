@@ -64,7 +64,7 @@
             <td><img src="media/{{ product.image }}" alt="NO IMAGE" width="100"></td>
             <td>{{ product.image }}</td>
             <td>{{ product.name }}</td>
-            <td>{{ product.category_id }}</td>
+            <td>{{ product.category.name }}</td>
             <td>{{ product.create_at }}</td>
             <td><a href="{% url 'deleteProduct' product.id %}">Delete</a></td>
             <td><a href="{% url 'editProduct' product.id %}">Edit</a></td>
