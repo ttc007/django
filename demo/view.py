@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
-from products.models import Product
+from products.models import Product, Category
+from django.http import JsonResponse, HttpResponse
 from datetime import datetime
+import array
+from pprint import pprint
 
 def index(request):
     products = Product.objects.all()
-    context = {'products' : products}
+    categorys = Category.objects.all()
+    context = {'products' : products,
+               'categorys' : categorys}
     return render(request, 'index.html', context)
 
 
@@ -35,9 +40,18 @@ def edit(request, id):
     return render(request, 'edit.html', context)
 
 def update(request, id):
-    product = Product.objects.get(id=id)
+    product = Product.objects.get(id = id)
     product.name = request.POST['name']
     product.category_id = request.POST['category_id']
     product.create_at="2017-12-11"
     product.save()
     return redirect('/')
+
+def ajaxCategory(request):
+    # products = Product.objects.all()
+    products = Product.objects.filter(category_id = request.GET['id'])
+    data = {'product':[]}
+    for product in products:
+        data['product'].append({'id': request.GET['id'], 'name' : product.name})
+    response = JsonResponse(data)
+    return response

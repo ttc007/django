@@ -19,13 +19,15 @@ from django.contrib import admin
 from demo import  view
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls, name = 'admin'),
     url(r'^$', view.index),
     url(r'^createProduct', view.create, name = 'createProduct' ),
     url(r'^storeProduct', view.store, name='storeProduct'),
     url(r'^deleteProduct/(?P<id>[0-9])', view.delete, name='deleteProduct'),
     url(r'^editProduct/(?P<id>[0-9])', view.edit, name = 'editProduct' ),
     url(r'^updateProduct/(?P<id>[0-9])', view.update, name = 'updateProduct' ),
+
+    url(r'^ajaxCategory', view.ajaxCategory),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

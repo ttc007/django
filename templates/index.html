@@ -8,15 +8,54 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-top: 1em">
+    <a href="/admin" class="pull-right"><button>Admin</button></a>
+<h1>Choose Category:</h1>
+    <form action="">
+        <select name="category_select" id="category_select">
+                <option>Choose</option>
+            {% for category in categorys  %}
+                 <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="product_select" id="product_select">
+                <option>Choose</option>
+        </select>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+        <script>
+            $(document).ready(function() {
+                var _token = $('input[name="_token"]').val();
+                $('#category_select').change(function() {
+                    $('#product_select').empty();
+                    var id = $(this).val();
+                    $.ajax({
+                        type: 'get',
+                        url: "/ajaxCategory",
+                        data: {'id' : id ,
+                            '_token' : _token},
+                        success: function(data){
+                            console.log(data.product);
+                            $.each(data.product, function(i, n) {
+                                $('#product_select').append("<option value="+n.id+">"+n.name+"</option>");
+                            });
+                        },
+                        error: function(data){
+                            alert("fail" + ' ' +data)
+                        },
+                    });
+                });
+            });
+        </script>
+    </form>
 <h1>Products list</h1>
     <a href="{% url 'createProduct' %}">Add product</a>
     <table class="table table-striped">
