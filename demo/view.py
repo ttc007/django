@@ -14,9 +14,12 @@ def index(request):
 
 
 def create(request):
-    return render(request, 'create.html')
+    categorys = Category.objects.all()
+    context = {'categorys': categorys}
+    return render(request, 'create.html', context)
 
 def store(request):
+    print "DEBUG image ", (request.POST)
     if request.FILES.get('image'):
         image = request.FILES['image']
         image.name = request.POST['name'] + ".png"
@@ -36,19 +39,25 @@ def delete(request, id):
 
 def edit(request, id):
     product = Product.objects.get(id = id)
-    context = {'product': product}
+    categorys = Category.objects.all()
+    context = {'product': product,
+               'categorys': categorys}
     return render(request, 'edit.html', context)
 
 def update(request, id):
     product = Product.objects.get(id = id)
     product.name = request.POST['name']
     product.category_id = request.POST['category_id']
-    product.create_at="2017-12-11"
+    product.create_at = datetime.today()
+    print "DEBUG image ", (request.POST)
+    if request.FILES.get('image'):
+        image = request.FILES['image']
+        image.name = request.POST['name'] + ".png"
+        product.image = image
     product.save()
     return redirect('/')
 
 def ajaxCategory(request):
-    # products = Product.objects.all()
     products = Product.objects.filter(category_id = request.GET['id'])
     data = {'product':[]}
     for product in products:

@@ -21,9 +21,13 @@ Form add product<br>
     <lable>Name</lable>
     <input type="text" name='name'>
     <lable>Category ID</lable>
-    <input type="text" name='category_id'>
+    <select name="category_id">
+        {% for category in categorys %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
     <input type="file" name="image">
-    <input type="submit">
+    <input type="submit" value="Create">
 </form>
 </body>
 </html>

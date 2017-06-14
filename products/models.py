@@ -5,19 +5,20 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    create_at = models.DateTimeField('date published')
+    create_at = models.DateTimeField(auto_now_add=True, null=True)
 
+    def __str__(self):
+        return '%s' % (self.name)
 
 class Product(models.Model):
-    CATEGORYS = []
-    for category in Category.objects.all():
-        CATEGORYS.append((category.id, category.name))
-
     name = models.CharField(max_length=200)
-    create_at = models.DateTimeField('date published')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1, related_name="products",
-        related_query_name="product")
+    create_at = models.DateTimeField(auto_now_add=True, null= True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts_type_rel', null=True,
+                                  blank=True)
     image = models.FileField(upload_to='images/', default='default.jpg')
+
+    def __str__(self):
+        return '%s' % (self.name)
 
 
 
