@@ -22,8 +22,13 @@ Form edit product<br>
     <input type="text" name='name' value="{{ product.name }}">
     <lable>Category ID</lable>
     <select name="category_id">
+            <option>--Choose--</option>
         {% for category in categorys %}
+            {% if product.category.id == category.id %}
+                <option value="{{ category.id }}" selected>{{ category.name }}</option>
+            {% endif %}
             <option value="{{ category.id }}">{{ category.name }}</option>
+            }
         {% endfor %}
     </select>
     <input type="file" name="image">

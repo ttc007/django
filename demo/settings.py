@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'products.apps.ProductsConfig',
+    'character.apps.CharacterConfig',
     'rest_framework',
     'modeltranslation',
     'django.contrib.admin',
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'demo.urls'
@@ -113,13 +115,22 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
-LANGUAGE_CODE = 'en-us'
+
+LANGUAGE_CODE = 'en'
 
 gettext = lambda s: s
 LANGUAGES = (
     ('vi', gettext('Vietnamese')),
     ('en', gettext('English')),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.i18n",
 )
 
 TIME_ZONE = 'UTC'

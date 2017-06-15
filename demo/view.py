@@ -1,15 +1,21 @@
 from django.shortcuts import render, redirect
-from products.models import Product, Category
+from products.models import Product, Category, Industry
+from character.models import Character
 from django.http import JsonResponse, HttpResponse
 from datetime import datetime
 import array
 from pprint import pprint
+from django.utils.translation import ugettext as _
 
 def index(request):
+    output = _("Welcome to my site.")
+    industrys = Industry.objects.all()
     products = Product.objects.all()
     categorys = Category.objects.all()
+    character = Character.objects.get(id=1)
     context = {'products' : products,
-               'categorys' : categorys}
+               'categorys' : categorys,
+               'character':character}
     return render(request, 'index.html', context)
 
 
