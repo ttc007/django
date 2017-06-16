@@ -27,12 +27,15 @@ urlpatterns = [
     url(r'^deleteProduct/(?P<id>[0-9]+)/$', view.delete, name='deleteProduct'),
     url(r'^editProduct/(?P<id>[0-9]+)/$', view.edit, name = 'editProduct' ),
     url(r'^updateProduct/(?P<id>[0-9]+)/$', view.update, name = 'updateProduct' ),
+    url(r'^buyProduct/(?P<id>[0-9]+)/$', view.buy, name = 'buyProduct' ),
 
     url(r'^ajaxCategory', view.ajaxCategory),
 
     url(r'^api/', include('api.urls')),
-
+    url(r'^account/', include('login.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+
+    
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

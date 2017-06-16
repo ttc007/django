@@ -4,18 +4,20 @@ from character.models import Character
 from django.http import JsonResponse, HttpResponse
 from datetime import datetime
 import array
-from pprint import pprint
 from django.utils.translation import ugettext as _
+from django.contrib import auth
+from django.contrib.auth.models import User
+from character.models import Vault
 
 def index(request):
     output = _("Welcome to my site.")
     industrys = Industry.objects.all()
     products = Product.objects.all()
     categorys = Category.objects.all()
-    character = Character.objects.get(id=1)
+    character = Character.objects.get(user_id=request.user.id)
     context = {'products' : products,
                'categorys' : categorys,
-               'character':character}
+               'character':character,}
     return render(request, 'index.html', context)
 
 
@@ -62,6 +64,19 @@ def update(request, id):
         product.image = image
     product.save()
     return redirect('/')
+
+def buy(request, id):
+    character = Character.objects.get(user_id=request.user.id)
+    product = Product.objects.get(id=id)
+    if character.gold > product.price:
+        character.gold = character.gold - product.price
+        vault = Vault(character_id=character.id, item=id)
+        character.save()
+        vault.save()
+
+    return redirect('/')
+
+
 
 def ajaxCategory(request):
     products = Product.objects.filter(category_id = request.GET['id'])

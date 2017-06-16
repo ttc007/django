@@ -18,11 +18,11 @@ import  views
 
 urlpatterns = [
 
-    url('product/(?P<p_id>[0-9]+)/$', views.productDetail),
-    url('product/(?P<id>[0-9]+)/update/$', views.productUpdate),
-    url('products', views.ProductListAPIView.as_view()),
-    url('product/create/$', views.ProductCreateAPIView.as_view()),
-    url('product/(?P<id>[0-9]+)/delete/$', views.productDelete),
+    url('login_view', views.login_view),
+    url(r'login',views.login),
+    url(r'logout',views.logout),
+    url('register_view', views.register_view),
+    url('register', views.register),
 ]
 
 

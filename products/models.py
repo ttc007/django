@@ -30,6 +30,7 @@ class Product(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, null= True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts_type_rel', null=True,
                                   blank=True)
+    price = models.IntegerField(default=200)
     image = models.FileField(upload_to='images/', default='default.jpg')
     HP = models.IntegerField(default=1000)
     Armor = models.IntegerField(default=32)

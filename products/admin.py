@@ -8,7 +8,7 @@ class ProductAdmin(admin.ModelAdmin):
     pass
     # fields = ('name_en', 'name_vi', 'image', 'category')
     search_fields = ['name_en','name_vi', 'id']
-    list_display = ('name', 'create_at', 'image', 'category')
+    list_display = ('id', 'name', 'create_at', 'image', 'category')
 
 admin.site.register(Product,  ProductAdmin)
 

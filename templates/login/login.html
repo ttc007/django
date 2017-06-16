@@ -1,0 +1,32 @@
+
+{% extends "layout.html" %}
+
+{% block main_content %}
+<div class="panel panel-info" style="width: 320px">
+    <div class="panel-heading" style="text-align: center;">Login</div>
+    <div class="panel-body">
+        <form action="/account/login" method="post">
+            {% csrf_token %}
+            {% if error %}
+            {{error}}
+            {% endif %}
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" required=""></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" required=""></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Login" required=""></td>
+                </tr>
+
+            </table>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
