@@ -1,0 +1,38 @@
+<h1>Choose Category:</h1>
+    <div class="col-md-5">
+        <form action="">
+            <select name="category_select" id="category_select">
+                    <option>Choose</option>
+                {% for category in categorys  %}
+                     <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <select name="product_select" id="product_select">
+                    <option>Choose</option>
+            </select>
+            <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    var _token = $('input[name="_token"]').val();
+                    $('#category_select').change(function() {
+                        $('#product_select').empty();
+                        var id = $(this).val();
+                        $.ajax({
+                            type: 'get',
+                            url: "/ajaxCategory",
+                            data: {'id' : id ,
+                                '_token' : _token},
+                            success: function(data){
+                                console.log(data.product);
+                                $.each(data.product, function(i, n) {
+                                    $('#product_select').append("<option value="+n.id+">"+n.name+"</option>");
+                                });
+                            },
+                            error: function(data){
+                                alert("fail" + ' ' +data)
+                            },
+                        });
+                    });
+                });
+            </script>
+        </form>

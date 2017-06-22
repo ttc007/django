@@ -1,0 +1,42 @@
+<button type="button" class="btn" data-toggle="modal" data-target="#characterModal">Character</button>
+        <div class="modal fade" id="characterModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                    <h1>Character</h1>
+                    <table class="table table-striped">
+                        <tr>
+                            <td><img src="/media/{{ character.image }}" alt="NO IMAGE" width="100"></td>
+                            <td>{{ character.name }}<br>Level.{{ character.level }}</td>
+                        </tr>
+                        <tr>
+                            
+                            <td>Class none</td>
+                        </tr>
+                        <tr>
+                            <td>Hp</td>
+                            <td>{{ character.hp}}</td>
+                        </tr>
+                        <tr>
+                            <td>Acttack</td>
+                            <td>{{ character.acttack }}</td>
+                        </tr>
+                        <tr>
+                            <td>Armor</td>
+                            <td>{{ character.armor }}</td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>

@@ -30,6 +30,8 @@ class Character(models.Model):
         return Product.objects.get(id=self.foot)
     def armourOp(self):
         return Product.objects.get(id=self.armour)
+    def vaults(self):
+        return Vault.objects.filter(character_id=self.id)
 
 class Vault(models.Model):
     character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True,

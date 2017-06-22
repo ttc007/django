@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block main_content %}
+<div class="pull-right">
+    {% include 'modal/modalCharacter.html'%}
+</div>
+<div class="pull-right">
+    {% include 'modal/modalVault.html'%}
+</div>
+<a href="/"><button type="button">Back</button></a>
+
+
+                    <h1>Products list</h1>
+                    <p>Gold:{{ character.gold }}</p>
+                    <table class="table table-striped">
+                        {% for product in products %}
+                            <div class="col-md-3">
+                            <img src="/media/{{ product.image }}" class="img-thumbnail" alt="NO IMAGE" style="width: 100px;height: 100px">
+                            Price:{{ product.price }}
+                            <a href="{% url 'buyProduct' product.id %}"><button>Buy</button></a>
+                            </div>
+                        
+                        {% endfor %}
+
+                    </table>
+
+
+{% endblock %}

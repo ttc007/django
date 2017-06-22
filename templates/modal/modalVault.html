@@ -1,0 +1,89 @@
+<button type="button" class="btn" data-toggle="modal" data-target="#myModal">Vault</button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                <div class="modal-body">
+                    <div style="height:530px;">
+                        <div class="col-md-3">
+                                {% if character.armourOp %}
+                                    <div class="img img-thumbnail equipped tooltipp">
+                                    <img src="/media/{{ character.armourOp.image }}" style="width: 100%;;height: 100%">
+                                        <div class="tooltiptext">
+                                            <h3 style="color: green">{{ character.armourOp.name }}</h3>
+                                            <h4>OPTION</h4>
+                                            <h5>{{ character.armourOp.HP}}HP</h5>
+                                            <h5>{{ character.armourOp.Armor }}Armor</h5>
+                                            <h5>{{ character.armourOp.Acttack }}Acttack</h5>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="img img-thumbnail equipped">
+                                    <img src="/media/default.jpg" style="width: 100%;;height: 100%">
+                                    </div>
+                                {% endif %}
+                                    
+                                {% if character.armourOp %}
+                                    <div  class="img img-thumbnail equipped tooltipp">
+                                        <img src="/media/{{ character.weaponOp.image }}" style="width: 100%;;height: 100%">
+                                        <div class="tooltiptext">
+                                            <h3 style="color: green">{{ character.weaponOp.name }}</h3>
+                                            <h4>OPTION</h4>
+                                            <h5>{{ character.weaponOp.HP}}HP</h5>
+                                            <h5>{{ character.weaponOp.Armor }}Armor</h5>
+                                            <h5>{{ character.weaponOp.Acttack }}Acttack</h5>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="img img-thumbnail equipped">
+                                    <img src="/media/default.jpg" style="width: 100%;;height: 100%">
+                                    </div>
+                                {% endif %}
+                                {% if character.armourOp %}
+                                    <div class="img img-thumbnail equipped tooltipp">
+                                        <img src="/media/{{ character.footOp.image }}" style="width: 100%;height: 100%">
+                                        <div class="tooltiptext">
+                                            <h3 style="color: green">{{ character.weaponOp.name }}</h3>
+                                            <h4>OPTION</h4>
+                                            <h5>{{ character.weaponOp.HP}}HP</h5>
+                                            <h5>{{ character.weaponOp.Armor }}Armor</h5>
+                                            <h5>{{ character.weaponOp.Acttack }}Acttack</h5>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="img img-thumbnail equipped">
+                                    <img src="/media/default.jpg" style="width: 100%;;height: 100%">
+                                    </div>
+                                {% endif %}
+                        </div>
+                        <div class="col-md-7" style="background: #123abc; height: 480px; padding: 0">
+                            <img src="/media/{{ character.image }}" style="width: 100%">
+                        </div>
+                    </div>
+                        <h1>Vault</h1>
+                        <div class="thumbnail">
+                        <p>Gold:{{ character.gold }}</p>
+                            {% for vault in character.vaults %}
+                            <div class="tooltipp">
+                                <img src="/media/{{ vault.product.image }}" alt="NO IMAGE" style="width: 75px;height:75px;" class="img img-thumbnail">
+                                <div class="tooltiptext">
+                                <h3 style="color: green">{{ vault.product.name}}</h3>
+                                <h4>OPTION</h4>
+                                <h5>{{ vault.product.HP}}HP</h5>
+                                <h5>{{ vault.product.Armor }}Armor</h5>
+                                <h5>{{ vault.product.Acttack }}Acttack</h5>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+        </div>

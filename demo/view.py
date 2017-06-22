@@ -14,17 +14,34 @@ def index(request):
     industrys = Industry.objects.all()
     products = Product.objects.all()
     categorys = Category.objects.all()
-    character = Character.objects.get(user_id=request.user.id)
+    if request.user.is_active :
+        character = Character.objects.get(user_id=request.user.id)
+    else:
+        return redirect('/account/login_view')
     context = {'products' : products,
                'categorys' : categorys,
                'character':character,}
     return render(request, 'index.html', context)
 
+def shop(request):
+    output = _("Welcome to my site.")
+    industrys = Industry.objects.all()
+    products = Product.objects.all()
+    categorys = Category.objects.all()
+    if request.user.is_active :
+        character = Character.objects.get(user_id=request.user.id)
+    else:
+        return redirect('/account/login_view')
+    context = {'products' : products,
+               'categorys' : categorys,
+               'character':character,}
+    return render(request, 'shop/shop.html', context)
+
 
 def create(request):
     categorys = Category.objects.all()
     context = {'categorys': categorys}
-    return render(request, 'create.html', context)
+    return render(request, 'products/create.html', context)
 
 def store(request):
     print "DEBUG image ", (request.POST)
@@ -50,7 +67,7 @@ def edit(request, id):
     categorys = Category.objects.all()
     context = {'product': product,
                'categorys': categorys}
-    return render(request, 'edit.html', context)
+    return render(request, 'products/edit.html', context)
 
 def update(request, id):
     product = Product.objects.get(id = id)

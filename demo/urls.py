@@ -29,6 +29,9 @@ urlpatterns = [
     url(r'^updateProduct/(?P<id>[0-9]+)/$', view.update, name = 'updateProduct' ),
     url(r'^buyProduct/(?P<id>[0-9]+)/$', view.buy, name = 'buyProduct' ),
 
+    url(r'^shop', view.shop),
+
+
     url(r'^ajaxCategory', view.ajaxCategory),
 
     url(r'^api/', include('api.urls')),

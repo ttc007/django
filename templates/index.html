@@ -1,146 +1,44 @@
-{% extends "layout.html" %}
+{% extends "app/layout.html" %}
 
 {% block main_content %} 
-    <h1>Choose Category:</h1>
-    <div class="col-md-5">
-        <form action="">
-            <select name="category_select" id="category_select">
-                    <option>Choose</option>
-                {% for category in categorys  %}
-                     <option value="{{ category.id }}">{{ category.name }}</option>
-                {% endfor %}
-            </select>
-            <select name="product_select" id="product_select">
-                    <option>Choose</option>
-            </select>
-            <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    var _token = $('input[name="_token"]').val();
-                    $('#category_select').change(function() {
-                        $('#product_select').empty();
-                        var id = $(this).val();
-                        $.ajax({
-                            type: 'get',
-                            url: "/ajaxCategory",
-                            data: {'id' : id ,
-                                '_token' : _token},
-                            success: function(data){
-                                console.log(data.product);
-                                $.each(data.product, function(i, n) {
-                                    $('#product_select').append("<option value="+n.id+">"+n.name+"</option>");
-                                });
-                            },
-                            error: function(data){
-                                alert("fail" + ' ' +data)
-                            },
-                        });
-                    });
-                });
-            </script>
-        </form>
-    <h1>Products list</h1>
-    <a href="{% url 'createProduct' %}">Add product</a>
-    <table class="table table-striped">
-        {% for product in products %}
-        <tr>
-            <td><img src="/media/{{ product.image }}" alt="NO IMAGE" width="100"></td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.category.name }}</td>
-            <td>{{ product.price }}</td>
-            <td><a href="{% url 'buyProduct' product.id %}">Buy</a></td>
-        </tr>
-        {% endfor %}
 
-    </table>
+    {% include 'modal/modalCharacter.html'%}
+    {% include 'modal/modalVault.html'%}
+
+    <a href="/shop"><button type="button">Shop</button></a>
+<blink>text</blink>
+    <div class="panelGame" style="position: relative;overflow: hidden;">
+
+        <img src="/media/game/bg2.jpg" style="width: 1500px;height: 1000px;position: absolute;top:-100px;z-index: -1;">
+       <!--  <a href=""><img src="/media/characters/sanrio.jpg" style="width:250px;height: 250px;position: absolute;bottom: 100px;left:100px;display: block;"></a> -->
+        <a href=""><img src="/media/game/nhachinh.png" style="width:250px;height: 250px;position: absolute;bottom: 80px;left: 500px;display: block;z-index: 0;"></a>
+        <img src="/media/game/samset.jpg" style="display: block;z-index: 0;position: absolute;left: 0px;z-index: 0;width:1250px;height: 850px;opacity: 0" id="untisamset">
+
+
     </div>
-    <div class="col-md-6">
-        <h1>Character</h1>
-        <table class="table table-striped">
-            <tr>
-                <td><img src="/media/{{ character.image }}" alt="NO IMAGE" width="100"></td>
-                <td>{{ character.name }}<br>Level.{{ character.level }}</td>
-            </tr>
-            <tr>
-                
-                <td>Class none</td>
-            </tr>
-            <tr>
-                <td>Hp</td>
-                <td>{{ character.hp}}</td>
-            </tr>
-            <tr>
-                <td>Acttack</td>
-                <td>{{ character.acttack }}</td>
-            </tr>
-            <tr>
-                <td>Armor</td>
-                <td>{{ character.armor }}</td>
-            </tr>
-        </table>
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1527092924008564',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();   
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 
 
-
-        <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Vault</button>
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div style="height:530px;">
-                        <div class="col-md-4">
-                                <div style="width: 100px;height: 100px;margin: 25px;background: #123456");">
-                                    <a href="#" data-toggle="tooltip" title="{{character.weaponOption.name}}+{{ character.weaponOption.HP}}HP+{{ character.weaponOption.Armor}}Armor
-                                    {{ character.weaponOption.Acttack}}Acttack" >
-                                <img src="/media/{{ character.foot.image }}" style="width: 100%;"></a>
-                                </div>
-
-                                <div style="width: 100px;height: 100px;margin: 25px;background: #123456");">
-                                    <a href="#" data-toggle="tooltip" title="{{character.armourOp.name}}+{{ character.armour.HP}}HP+{{ character.armourOp.Armor}}Armor
-                                    {{ character.armourOp.Acttack}}Acttack" >
-                                <img src="/media/{{ character.armourOp.image }}" style="width: 100%;"></a>
-                                </div>
-                                <div style="width: 100px;height: 100px;margin: 25px;background: #123456");">
-                                    <a href="/media/{{ character.weaponOp.image }}" data-toggle="tooltip" title="{{character.weaponOp.name}}+{{ character.weaponOp.HP}}HP+{{ character.weaponOp.Armor}}Armor
-                                    {{ character.weaponOp.Acttack}}Acttack" >
-                                <img src="" style="width: 100%;"></a>
-                                </div>
-                                <div style="width: 100px;height: 100px; margin: 25px;background: #123456");">
-                                    <a href="#" data-toggle="tooltip" title="{{character.footOp.name}}+{{ character.footOp.HP}}HP+{{ character.footOp.Armor}}Armor
-                                    {{ character.footOp.Acttack}}Acttack" >
-                                <img src="/media/{{ character.footOp.image }}" style="width: 100%;height: 100%"></a>
-                                </div>
-                        </div>
-                        <div class="col-md-7" style="margin-top: 25px;background: #123abc; height: 480px; padding: 0">
-                            <img src="/media/{{ character.image }}" style="width: 100%">
-                        </div>
-                    </div>
-                        <h1>Vault</h1>
-                        <div class="thumbnail">
-                        <p>Gold:{{ character.gold }}</p>
-                            {% for vault in character.vaults %}
-                            <div style="width: 75px;height:75px;display:inline-block;">
-                                <a href="#" data-toggle="tooltip" title="{{ vault.product.name}}+{{ vault.product.HP}}HP+ {{ vault.product.Armor }}Armor
-                                {{ vault.product.Acttack }}Acttack" >
-                                <img src="/media/{{ vault.product.image }}" alt="NO IMAGE" style="width: 75px;height:75px;" class="img img-thumbnail"></a>
-                            </div>
-                            {% endfor %}
-                        </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        
-    </div>
-
+<div class="fb-like" data-href="https://www.facebook.com/FacebookforDevelopers/?fref=ts" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true" style="float: left;">
 </div>
 
+<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs&width=500&height=200&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1527092924008564" width="500" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 {% endblock %}

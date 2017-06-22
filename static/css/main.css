@@ -1,0 +1,48 @@
+.equipped{margin-top: 1em}
+.tooltipp {
+            position: relative;
+            display: inline-block;
+        }
+.tooltipp .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            text-align:center;
+        }
+
+.tooltipp:hover .tooltiptext {
+            visibility: visible;
+        }
+
+.panelGame{
+    width: 1200px;
+    height: 800px;
+    border: 1px solid #123
+}
+#untisamset {
+    position: relative;
+    -webkit-animation: myfirst 5s linear 2s infinite; /* Safari 4.0 - 8.0 */
+    animation: myfirst .5s linear 2s 5 ;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes myfirst {
+    0%   {opacity: 1}
+    
+    100% {opacity: 0.1}
+}
+
+/* Standard syntax */
+@keyframes myfirst {
+    0%   {opacity: 1}
+    
+    100% {opacity: 0.1}
+}
