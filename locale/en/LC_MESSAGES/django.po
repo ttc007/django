@@ -19,12 +19,16 @@ msgstr ""
 
 #: demo/settings.py:125
 msgid "Vietnamese"
-msgstr ""
+msgstr "VietNam"
 
 #: demo/settings.py:126
 msgid "English"
 msgstr ""
 
 #: demo/view.py:10
-msgid "Welcome to my site."
-msgstr ""
+msgid "welcome"
+msgstr "Welcome to my site."
+
+#:
+msgid "character"
+msgstr "Character"

@@ -34,7 +34,7 @@ urlpatterns = [
 
     url(r'^ajaxCategory', view.ajaxCategory),
 
-    url(r'^api/', include('api.urls')),
+    
     url(r'^account/', include('login.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 
@@ -45,6 +45,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^$', view.index, name='index'),
+    url(r'^api/', include('api.urls')),
 )
 
 

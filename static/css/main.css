@@ -27,22 +27,29 @@
     height: 800px;
     border: 1px solid #123
 }
-#untisamset {
+/*#untisamset {
     position: relative;
-    -webkit-animation: myfirst 5s linear 2s infinite; /* Safari 4.0 - 8.0 */
-    animation: myfirst .5s linear 2s 5 ;
+    animation: myfirst .9s linear 0s 3 ;
+    animation-play-state: paused;
 }
 
 /* Safari 4.0 - 8.0 */
-@-webkit-keyframes myfirst {
-    0%   {opacity: 1}
-    
-    100% {opacity: 0.1}
-}
 
 /* Standard syntax */
-@keyframes myfirst {
-    0%   {opacity: 1}
-    
-    100% {opacity: 0.1}
+/*@keyframes myfirst {
+    0%   {opacity: 0;}
+
+    100% {opacity: 0.9;}
 }
+@keyframes dame {
+    0%   {opacity: 0;}
+
+    50% {bottom: 300px;}
+    100% {opacity: 0.9; bottom: 320px;}
+}*/
+
+/*#dame {
+    position: relative;
+    animation: dame.9s linear 0s 3 ;
+    animation-play-state: paused;
+}*/

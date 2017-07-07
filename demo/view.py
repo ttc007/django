@@ -8,6 +8,8 @@ from django.utils.translation import ugettext as _
 from django.contrib import auth
 from django.contrib.auth.models import User
 from character.models import Vault
+from django.utils import translation
+
 
 def index(request):
     output = _("Welcome to my site.")
@@ -18,9 +20,11 @@ def index(request):
         character = Character.objects.get(user_id=request.user.id)
     else:
         return redirect('/account/login_view')
+    message =  _('Today is %(month)s %(day)s.') % {'month': '3', 'day': '4'}
     context = {'products' : products,
                'categorys' : categorys,
-               'character':character,}
+               'character':character,
+               'message': message}
     return render(request, 'index.html', context)
 
 def shop(request):

@@ -20,12 +20,19 @@ msgstr ""
 
 #: demo/settings.py:125
 msgid "Vietnamese"
-msgstr ""
+msgstr "Tieng Viet"
 
 #: demo/settings.py:126
 msgid "English"
-msgstr ""
+msgstr "Tieng Anh"
 
 #: demo/view.py:10
-msgid "Welcome to my site."
-msgstr ""
+msgid "welcome"
+msgstr "Chao mung den voi website cua toi"
+
+#:
+msgid "character %s"
+msgstr "Nhan vat %s"
+
+msgid "Today is %(month)s - %(day)s."
+msgstr "Hôm nay là %(month)s %(day)s."

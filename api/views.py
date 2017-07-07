@@ -7,7 +7,8 @@ from api.serializers import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth import get_user_model
-from rest_framework.generics import CreateAPIView,  ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
+from django.utils.translation import ugettext , ugettext_lazy as _
 # Create your views here.
 
 class ProductCreateAPIView(CreateAPIView):
@@ -31,6 +32,8 @@ def productDelete(request, id):
 def productDetail(request, p_id):
     product = Product.objects.get(pk = p_id)
     serializer = ProductSerializers(product, many = False)
+    message = _('Success')
+    print message
     return Response(serializer.data)
 
 

@@ -4,41 +4,47 @@
 
     {% include 'modal/modalCharacter.html'%}
     {% include 'modal/modalVault.html'%}
-
+    
+    {% load i18n %}
     <a href="/shop"><button type="button">Shop</button></a>
-<blink>text</blink>
-    <div class="panelGame" style="position: relative;overflow: hidden;">
+    <h1>{% trans "welcome" %}</h1>
+    {{message}}
+
+
+
+    <div class="panelGame" id="panelGame" style="position: relative;overflow: hidden;">
 
         <img src="/media/game/bg2.jpg" style="width: 1500px;height: 1000px;position: absolute;top:-100px;z-index: -1;">
        <!--  <a href=""><img src="/media/characters/sanrio.jpg" style="width:250px;height: 250px;position: absolute;bottom: 100px;left:100px;display: block;"></a> -->
-        <a href=""><img src="/media/game/nhachinh.png" style="width:250px;height: 250px;position: absolute;bottom: 80px;left: 500px;display: block;z-index: 0;"></a>
-        <img src="/media/game/samset.jpg" style="display: block;z-index: 0;position: absolute;left: 0px;z-index: 0;width:1250px;height: 850px;opacity: 0" id="untisamset">
-
-
+        <img src="/media/game/nhachinh.png" style="width:250px;height: 250px;position: absolute;bottom: 80px;left: 500px;display: block;z-index: 0;">
+        <!-- <img src="/media/game/samset.jpg" style="display: block;z-index: 0;position: absolute;left: 0px;z-index: 0;width:1250px;height: 850px;opacity: 0" id="untisamset">
+        <span id="dame" style="display: block;z-index: 0;position: absolute;left: 650px;bottom: 280px;z-index: 1;color: #87c540;font-size: 40px;opacity: 0;">967504</span> -->
     </div>
-    <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1527092924008564',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.8'
-    });
-    FB.AppEvents.logPageView();   
-  };
+    <script>  
+        $("img").click(function(){
+            clearInterval(a);
+            var a=setInterval(function(){
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+                $("#panelGame").append("<img src='/media/game/samset.jpg' style='display: block;z-index: 1;position: absolute;left: 0px;z-index: 0;width:1250px;height: 850px;opacity: 1' id='untisamset'>");
+            $("#panelGame").append("<span id='dame' style='display: block;z-index: 0;position: absolute;left: 650px;bottom: 280px;z-index: 1;color: #87c540;font-size: 40px;opacity: 1;'>967504</span>");
+            $("#untisamset").animate({opacity:"0"},{duration: 1000},{delay:0});
+            $("#dame").animate({opacity:".1",bottom:"380px"},{duration: 1000});
+            setTimeout(function(){
+                $("#untisamset").remove();
+                $("#dame").remove();
+            }, 1000);
+            },2000);
+            
+            
+        });
+        
+
+        
+        
+    </script>
 
 
-<div class="fb-like" data-href="https://www.facebook.com/FacebookforDevelopers/?fref=ts" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true" style="float: left;">
-</div>
 
-<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs&width=500&height=200&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1527092924008564" width="500" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+{% include 'facebookFanPage/facebookFanPage.html' %}
+ 
 {% endblock %}
