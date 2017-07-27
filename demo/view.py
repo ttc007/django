@@ -9,6 +9,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from character.models import Vault
 from django.utils import translation
+from django.shortcuts import get_object_or_404
 
 
 def index(request):
@@ -17,14 +18,20 @@ def index(request):
     products = Product.objects.all()
     categorys = Category.objects.all()
     if request.user.is_active :
-        character = Character.objects.get(user_id=request.user.id)
+        print(request.user.password)
+        try:
+            character = Character.objects.get(user_id=request.user.id)
+        except Character.DoesNotExist:
+            character = None
+            return render(request, 'character/createCharacter.html')
     else:
         return redirect('/account/login_view')
-    message =  _('Today is %(month)s %(day)s.') % {'month': '3', 'day': '4'}
+    # message =  _('Today is %(month)s %(day)s.') % {'month': '3', 'day': '4'}
     context = {'products' : products,
                'categorys' : categorys,
                'character':character,
-               'message': message}
+               # 'message': message
+               }
     return render(request, 'index.html', context)
 
 def shop(request):

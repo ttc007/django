@@ -1,0 +1,25 @@
+{% extends "app/layout.html" %}
+
+{% block main_content %} 
+
+    {% include 'modal/modalCharacter.html'%}
+    {% include 'modal/modalVault.html'%}
+    
+    {% load i18n %}
+    <a href="/shop"><button type="button">Shop</button></a>
+    <h1>{% trans "welcome" %}</h1>
+    {{message}}
+
+
+
+<form action="account/createCharacter" method="post">
+    Dat ten nhan vat:
+    <input type="text" name="name">
+    <input type="submit" name="Tao">
+</form>
+
+
+
+{% include 'facebookFanPage/facebookFanPage.html' %}
+ 
+{% endblock %}

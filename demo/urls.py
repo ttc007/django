@@ -20,6 +20,16 @@ from django.contrib import admin
 from demo import  view
 
 urlpatterns = [
+    url(r'^$', view.index, name='index'),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^account/', include('login.urls')),
+
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
+    url(r'^$', view.index, name='index'),
+    url(r'^api/', include('api.urls')),
     url(r'^admin/', admin.site.urls, name = 'admin'),
     # url(r'^$', view.index),
     url(r'^createProduct', view.create, name = 'createProduct' ),
@@ -31,21 +41,9 @@ urlpatterns = [
 
     url(r'^shop', view.shop),
 
-
-    url(r'^ajaxCategory', view.ajaxCategory),
-
-    
     url(r'^account/', include('login.urls')),
-    url(r'^i18n/', include('django.conf.urls.i18n')),
-
+    url(r'^ajaxCategory', view.ajaxCategory),
     
-
-
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += i18n_patterns(
-    url(r'^$', view.index, name='index'),
-    url(r'^api/', include('api.urls')),
 )
 
 

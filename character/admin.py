@@ -15,6 +15,6 @@ admin.site.register(Character, CharacterAdmin)
 class VaultAdmin(admin.ModelAdmin):
     # fields = ('name', 'level')
     search_fields = ['item', 'character']
-    list_display = (['item', 'character'])
+    list_display = (['item', 'character', ])
     pass
 admin.site.register(Vault, VaultAdmin)

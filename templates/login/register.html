@@ -6,20 +6,19 @@
     <div class="panel-body">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-        <form action="/account/register" method="post">
-            {% csrf_token %}
-            <table>
-            {% csrf_token %}
+        <table>
+        <form action="register" method="post">
             {% if error %}
             {{error}}
             {% endif %}
-                {{ form }}
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Register"></td>
-                </tr>
-            </table>
+                <br>
+                Username:<input type="text" name="username"><br>
+                Password:<input type="password" name="password"><br>
+                Password Again:<input type="password" name="password_again"><br>
+                Email:<input type="email" name="email"><br>
+                    <input type="submit" value="Register"><br>
         </form>
+        </table>
         </div>
     </div>
 </div>
